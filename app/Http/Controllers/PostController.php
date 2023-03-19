@@ -24,12 +24,10 @@ class PostController extends Controller
       $title = ' by ' . $author->name;
     }
 
-    // $posts->setPath(url(config('APP_ENV')));
-
     return view('posts', [
       'title' => 'All Posts' . $title,
       'theme' => $this->theme,
-      'posts' => $posts->filter($search)->paginate(7)->setPath(url($_ENV['APP_URL']))->withQueryString(),
+      'posts' => $posts->filter($search)->paginate(7)->withQueryString()->setPath(url($_ENV['APP_URL'] . '/posts')),
     ]);
   }
 
